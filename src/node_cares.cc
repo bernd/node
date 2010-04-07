@@ -7,6 +7,16 @@
 #include <arpa/nameser.h>
 #include <arpa/inet.h>
 
+/* OpenBSD is still using the old __BIND 19960801 interface */
+#ifdef __OpenBSD__
+#define ns_t_a		T_A
+#define ns_t_aaaa	T_AAAA
+#define ns_t_ns		T_NS
+#define ns_t_ptr	T_PTR
+#define ns_t_txt	T_TXT
+#define ns_t_srv	T_SRV
+#define ns_c_in		C_IN
+#endif
 
 namespace node {
 
