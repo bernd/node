@@ -9,6 +9,9 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#ifdef __OpenBSD__
+#include <sys/uio.h>
+#endif
 #include <sys/un.h>
 #include <unistd.h>
 #include <fcntl.h>
