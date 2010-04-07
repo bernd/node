@@ -47,6 +47,9 @@
 #include <errno.h>
 #include <stddef.h>
 #include <stdlib.h>
+#ifdef __OpenBSD__
+#include <stdint.h>
+#endif
 #include <string.h>
 #include <errno.h>
 #include <sys/types.h>
