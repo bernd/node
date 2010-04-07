@@ -62,7 +62,7 @@ docclean:
 
 clean:
 	@$(WAF) clean
-	@-find tools/ -name "*.pyc" -delete
+	@-find tools/ -name "*.pyc" -print0 | xargs -0r rm -f
 
 distclean: clean docclean
 	@-rm -rf build/
