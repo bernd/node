@@ -106,6 +106,11 @@ def conf_subproject (conf, subdir, command=None):
     copytree(default_tgt, debug_tgt, True)
 
 def configure(conf):
+  # We have to select gcc4 on OpenBSD.
+  if sys.platform.startswith("openbsd"):
+    conf.env["CC"] = 'egcc'
+    conf.env["CXX"] = 'eg++'
+
   conf.check_tool('compiler_cxx')
   if not conf.env.CXX: conf.fatal('c++ compiler not found')
   conf.check_tool('compiler_cc')
@@ -265,6 +270,10 @@ def v8_cmd(bld, variant):
     mode = "debug"
 
   cmd_R = 'python "%s" -C "%s" -Y "%s" visibility=default mode=%s %s library=static snapshot=on'
+
+  # We have to select gcc4 on OpenBSD.
+  if sys.platform.startswith("openbsd"):
+    cmd_R = 'CC=egcc CXX=eg++ ' + cmd_R
 
   cmd = cmd_R % ( scons
                 , bld.srcnode.abspath(bld.env_of_name(variant))
